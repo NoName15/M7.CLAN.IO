@@ -1,7 +1,8 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 const prefix = '$$'
-
+const botconfig = require("./botconfig.json");
+const fs = require("fs");
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
 client.user.setGame(`Nothing`,"http://twitch.tv/S-F")
@@ -93,8 +94,7 @@ fs.readdir("./commands/", (err, files) => {
 });
 
 
-const botconfig = require("./botconfig.json");
-const fs = require("fs");
+
 client.commands = new Discord.Collection();
 
 fs.readdir("./commands/", (err, files) => {
