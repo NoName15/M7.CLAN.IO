@@ -120,7 +120,7 @@ channel.guild.owner.send(`<@!${channelremover.id}>
   },Otime)
   });
 
-bot.on('guildMemberAdd', member => {
+client.on('guildMemberAdd', member => {
     const welcomechannel = member.guild.channels.find('name', 'log')
 
     var newuserjoinembed = new Discord.RichEmbed()
@@ -132,7 +132,7 @@ bot.on('guildMemberAdd', member => {
       return welcomechannel.send(newuserjoinembed);
 });
 
-bot.on('guildMemberRemove', member => {
+client.on('guildMemberRemove', member => {
     const goodbyechannel = member.guild.channels.find('name', 'log')
 
     var newuserjoinembed = new Discord.RichEmbed()
