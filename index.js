@@ -144,7 +144,25 @@ client.on('guildMemberRemove', member => {
       return goodbyechannel.send(newuserjoinembed);
 });
 
-
+client.on('messageDelete', async (message) => {
+  const logs = message.guild.channels.find('name', 'log');
+  if (message.guild.me.hasPermission('MANAGE_CHANNELS') && !logs) {
+    message.guild.createChannel('log', 'text');
+  }
+  if (!message.guild.me.hasPermission('MANAGE_CHANNELS') && !logs) { 
+    console.log('The logs channel does not exist and tried to create the channel but I am lacking permissions')
+  }  
+  let user = ""
+    if (entry.extra.channel.id === message.channel.id
+      && (entry.target.id === message.author.id)
+      && (entry.createdTimestamp > (Date.now() - 5000))
+      && (entry.extra.count >= 1)) {
+    user = entry.executor.username
+  } else { 
+    user = message.author.username
+  }
+  logs.send(`تم حذف رسالة في ${message.channel.name} من قبل ${user}`);
+})
 
 
 
