@@ -148,4 +148,4 @@ client.on('guildMemberRemove', member => {
 
 
 
-client.login('process.inv.BOT_TOKEN');
+client.login(process.inv.BOT_TOKEN);
