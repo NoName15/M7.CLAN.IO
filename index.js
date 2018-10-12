@@ -31,42 +31,10 @@ client.user.setGame(`Nothing`,"http://twitch.tv/S-F")
 var guilds = {};
 client.on('guildBanAdd', function(guild) {
             const rebellog = client.channels.find("name", "log"),
-            Onumber = 3,
-  Otime = 10000
-guild.fetchAuditLogs({
-    type: 22
-}).then(audit => {
-    let banner = audit.entries.map(banner => banner.executor.id)
-    let bans = guilds[guild.id + banner].bans || 0 
-    guilds[guild.id + banner] = {
-        bans: 0
-    }
-      bans[guilds.id].bans += 1; 
-if(guilds[guild.id + banner].bans >= Onumber) {
-try {
-let roles = guild.members.get(banner).roles.array();
-guild.members.get(banner).removeRoles(roles);
-  guild.guild.member(banner).kick();
-
-} catch (error) {
-console.log(error)
-try {
-guild.members.get(banner).ban();
-  rebellog.send(`<@!${banner.id}>
-حآول العبث بالسيرفر @everyone`);
-guild.owner.send(`<@!${banner.id}>
-حآول العبث بالسيرفر ${guild.name}`)
-    setTimeout(() => {
- guilds[guild.id].bans = 0;
-  },Otime)
-} catch (error) {
-console.log(error)
-}
-}
-}
-})
+message.rebellog.send('بان')
+                  
 });
- let channelc = {};
+ 
   client.on('channelCreate', async (channel) => {
   const rebellog = client.channels.find("name", "log"),
   Oguild = channel.guild,
