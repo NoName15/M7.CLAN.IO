@@ -128,7 +128,7 @@ client.on('message', async message => {
  
     let reason = message.content.split(" ").slice(3).join(" ");
     if(!reason) reason = " [ **لم يذكر لماذا** ] ";
- 
+ var logs = channel.guild.channels.find(c => c.name === 'log');
     let thisEmbed = new Discord.RichEmbed()
     .setAuthor(mention.user.username, mention.user.avatarURL)
     .setTitle('**تم آعطائك ميوت**')
@@ -136,7 +136,7 @@ client.on('message', async message => {
     .addField('**__تم آعطائك ميوت بواسطة__**', [ message.author ])
     .addField('**__آلسبب__**',reason)
     .addField('**__وقت الميوت__**',duration)
- 
+ logs.send(thisEmbed)
     let role = message.guild.roles.find('name', 'Muted') || message.guild.roles.get(r => r.name === 'Muted');
     if(!role) try {
       message.guild.createRole({
