@@ -53,11 +53,11 @@ client.on('guildMemberRemove', member => {
       return goodbyechannel.send(newuserjoinembed);
 });
 
-bot.on("channelCreate", async channel => {
+client.on("channelCreate", async channel => {
 	var logs = channel.guild.channels.find(c => c.name === 'log');
 	if (!logs) return console.log("Can't find logs channel.");
 	const cembed = new Discord.RichEmbed()
-		.setTitle("Channel Created")
+		.setTitle("تم انشاء غرفة")
 		.setColor("RANDOM")
 		.setDescription(`غرفة **${channel.type} **, تحت اسسم **${channel.name}**, قد تم انشاءها الان!`)
 		.setTimestamp(new Date());
