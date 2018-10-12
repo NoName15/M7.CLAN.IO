@@ -74,7 +74,7 @@ client.on("channelDelete", async channel => {
 		.setTimestamp(new Date())
 	logs.send(cembed)
 });
-bot.commands = new Discord.Collection();
+client.commands = new Discord.Collection();
 
 fs.readdir("./commands/", (err, files) => {
 
@@ -88,18 +88,14 @@ fs.readdir("./commands/", (err, files) => {
   jsfile.forEach((f, i) =>{
     let props = require(`./commands/${f}`);
     console.log(`${f} loaded!`);
-    bot.commands.set(props.help.name, props);
+    client.commands.set(props.help.name, props);
   });
 });
 
-bot.on("ready", async () => {
-  console.log(`${bot.user.username} is online on ${bot.guilds.size} servers!`);
-  bot.user.setActivity("https://www.youtube.com/channel/UCVpcptqBqzLk136J1vcix5Q", {type: "WATCHING"});
 
-});
 const botconfig = require("./botconfig.json");
 const fs = require("fs");
-bot.commands = new Discord.Collection();
+client.commands = new Discord.Collection();
 
 fs.readdir("./commands/", (err, files) => {
 
