@@ -28,65 +28,6 @@ client.user.setGame(`Nothing`,"http://twitch.tv/S-F")
   console.log('')
 });
 
-var guilds = {};
-client.on('guildBanAdd', function(guild) {
-            const rebellog = client.channels.find("name", "log"),
-message.rebellog.send('بان')
-                  
-});
- 
-  client.on('channelCreate', async (channel) => {
-  const rebellog = client.channels.find("name", "log"),
-  Oguild = channel.guild,
-  Onumber = 3,
-  Otime = 10000;
-  const audit = await channel.guild.fetchAuditLogs({limit: 1});
-  const channelcreate = audit.entries.first().executor;
-  console.log(` A ${channel.type} Channel called ${channel.name} was Created By ${channelcreate.tag}`);
-   if(!channelc[channelcreate.id]) {
-    channelc[channelcreate.id] = {
-    created : 0
-     }
- }
- channelc[channelcreate.id].created += 1;
- if(channelc[channelcreate.id].created >= Onumber ) {
-    Oguild.members.get(channelcreate.id).kick();
-rebellog.send(`<@!${channelcreate.id}>
-حآول العبث بالسيرفر @everyone`);
-channel.guild.owner.send(`<@!${channelcreate.id}>
-حآول العبث بالسيرفر ${channel.guild.name}`)
-}
-  setTimeout(() => {
- channelc[channelcreate.id].created = 0;
-  },Otime)
-  });
-
-let channelr = {};
-  client.on('channelDelete', async (channel) => {
-  const rebellog = client.channels.find("name", "log"),
-  Oguild = channel.guild,
-  Onumber = 3,
-  Otime = 10000;
-  const audit = await channel.guild.fetchAuditLogs({limit: 1});
-  const channelremover = audit.entries.first().executor;
-  console.log(` A ${channel.type} Channel called ${channel.name} was deleted By ${channelremover.tag}`);
-   if(!channelr[channelremover.id]) {
-    channelr[channelremover.id] = {
-    deleted : 0
-     }
- }
- channelr[channelremover.id].deleted += 1;
- if(channelr[channelremover.id].deleted >= Onumber ) {
-  Oguild.guild.member(channelremover).kick();
-rebellog.send(`<@!${channelremover.id}>
-حآول العبث بالسيرفر @everyone`);
-channel.guild.owner.send(`<@!${channelremover.id}>
-حآول العبث بالسيرفر ${channel.guild.name}`)
-}
-  setTimeout(() => {
- channelr[channelremover.id].deleted = 0;
-  },Otime)
-  });
 
 client.on('guildMemberAdd', member => {
     const welcomechannel = member.guild.channels.find('name', 'log')
@@ -112,26 +53,25 @@ client.on('guildMemberRemove', member => {
       return goodbyechannel.send(newuserjoinembed);
 });
 
-client.on('messageDelete', async (message) => {
-  const logs = message.guild.channels.find('name', 'log');
-  if (message.guild.me.hasPermission('MANAGE_CHANNELS') && !logs) {
-    message.guild.createChannel('log', 'text');
-  }
-  if (!message.guild.me.hasPermission('MANAGE_CHANNELS') && !logs) { 
-    console.log('The logs channel does not exist and tried to create the channel but I am lacking permissions')
-  }  
-  let user = ""
-    if (entry.extra.channel.id === message.channel.id
-      && (entry.target.id === message.author.id)
-      && (entry.createdTimestamp > (Date.now() - 5000))
-      && (entry.extra.count >= 1)) {
-    user = entry.executor.username
-  } else { 
-    user = message.author.username
-  }
-  logs.send(`تم حذف رسالة في ${message.channel.name} من قبل ${user}`);
-})
+bot.on("channelCreate", async channel => {
+	var logs = channel.guild.channels.find(c => c.name === 'log');
+	if (!logs) return console.log("Can't find logs channel.");
+	const cembed = new Discord.RichEmbed()
+		.setTitle("Channel Created")
+		.setColor("RANDOM")
+		.setDescription(`غرفة **${channel.type} **, تحت اسسم **${channel.name}**, قد تم انشاءها الان!`)
+		.setTimestamp(new Date());
+	logs.send(cembed)
+});
 
-
-
+client.on("channelDelete", async channel => {
+	var logs = channel.guild.channels.find(c => c.name === 'log');
+	if (!logs) return console.log("Can't find logs channel.");
+	const cembed = new Discord.RichEmbed()
+		.setTitle("تم  حذف غرفة")
+		.setColor("RANDOM")
+		.setDescription(`غرفة **${channel.type} **, تحت الاسم **${channel.name}**, قد تم حذفها الان!`)
+		.setTimestamp(new Date())
+	logs.send(cembed)
+});
 client.login('NTAwMzI0ODI5MjM3NDc3Mzc2.DqJSkQ._Qz7OaF-AlIZu3HIcTV_sQOXBUU');
