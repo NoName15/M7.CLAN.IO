@@ -1,8 +1,7 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 const prefix = '$$'
-const botconfig = require("./botconfig.json");
-const fs = require("fs");
+
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
 client.user.setGame(`Nothing`,"http://twitch.tv/S-F")
@@ -78,7 +77,7 @@ client.on("channelDelete", async channel => {
 
 
 client.on("roleCreate",  rc => {
-const channel = rd.guild.channels.find("name", "اللوق")
+const channel = rd.guild.channels.find("name", "log")
 if(channel) {
   var embed = new Discord.RichEmbed()
   .setTitle(` + Role Created`)
@@ -89,7 +88,7 @@ channel.sendEmbed(embed)
 });
 
 client.on("roleDelete",  rd => {
-const channel = rd.guild.channels.find("name", "اللوق")
+const channel = rd.guild.channels.find("name", "log")
 if(channel) {
   var embed = new Discord.RichEmbed()
   .setTitle(` - Role Delete`)
@@ -100,7 +99,7 @@ channel.sendEmbed(embed)
 });
 
 client.on("guildUpdate",  rc => {
-const channel = rd.guild.channels.find("name", "اللوق")
+const channel = rd.guild.channels.find("name", "log")
 if(channel) {
   var embed = new Discord.RichEmbed()
   .setTitle(`+ guild updated`)
@@ -111,7 +110,7 @@ channel.sendEmbed(embed)
 });
 
 client.on("memberKick",  rd => {
-const channel = rd.guild.channels.find("name", "اللوق")
+const channel = rd.guild.channels.find("name", "log")
 if(channel) {
   var embed = new Discord.RichEmbed()
   .setTitle(` Member Kicked -`)
@@ -122,7 +121,7 @@ channel.sendEmbed(embed)
 });
 
 client.on("memberPrune",  rc => {
-const channel = rd.guild.channels.find("name", "اللوق")
+const channel = rd.guild.channels.find("name", "log")
 if(channel) {
   var embed = new Discord.RichEmbed()
   .setTitle(`Member Pruned`)
@@ -133,7 +132,7 @@ channel.sendEmbed(embed)
 });
 
 client.on("memberUpdate",  rd => {
-const channel = rd.guild.channels.find("name", "اللوق")
+const channel = rd.guild.channels.find("name", "log")
 if(channel) {
   var embed = new Discord.RichEmbed()
   .setTitle(` Member Updated`)
@@ -144,7 +143,7 @@ channel.sendEmbed(embed)
 });
 
 client.on("memberRoleUpdate",  rc => {
-const channel = rd.guild.channels.find("name", "اللوق")
+const channel = rd.guild.channels.find("name", "log")
 if(channel) {
   var embed = new Discord.RichEmbed()
   .setTitle(` Updated Roles`)
@@ -155,7 +154,7 @@ channel.sendEmbed(embed)
 });
 
 client.on("roleUpdate",  rd => {
-const channel = rd.guild.channels.find("name", "اللوق")
+const channel = rd.guild.channels.find("name", "log")
 if(channel) {
   var embed = new Discord.RichEmbed()
   .setTitle(`Role Updated`)
@@ -166,7 +165,7 @@ channel.sendEmbed(embed)
 });
 
 client.on("inviteCreate",  rd => {
-const channel = rd.guild.channels.find("name", "اللوق")
+const channel = rd.guild.channels.find("name", "log")
 if(channel) {
   var embed = new Discord.RichEmbed()
   .setTitle(`Invite Link Created +`)
@@ -177,7 +176,7 @@ channel.sendEmbed(embed)
 });
 
 client.on("inviteUpdate",  rd => {
-const channel = rd.guild.channels.find("name", "اللوق")
+const channel = rd.guild.channels.find("name", "log")
 if(channel) {
   var embed = new Discord.RichEmbed()
   .setTitle(`Role Updated`)
@@ -188,7 +187,7 @@ channel.sendEmbed(embed)
 });
 
 client.on("inviteDelete",  rd => {
-const channel = rd.guild.channels.find("name", "اللوق")
+const channel = rd.guild.channels.find("name", "log")
 if(channel) {
   var embed = new Discord.RichEmbed()
   .setTitle(`Invite Link Deleted -`)
@@ -199,7 +198,7 @@ channel.sendEmbed(embed)
 });
 
 client.on("emojiUpdate",  rd => {
-const channel = rd.guild.channels.find("name", "اللوق")
+const channel = rd.guild.channels.find("name", "log")
 if(channel) {
   var embed = new Discord.RichEmbed()
   .setTitle(`Emoji Updated`)
@@ -210,7 +209,7 @@ channel.sendEmbed(embed)
 });
 
 client.on("emojiDelete",  rd => {
-const channel = rd.guild.channels.find("name", "اللوق")
+const channel = rd.guild.channels.find("name", "log")
 if(channel) {
   var embed = new Discord.RichEmbed()
   .setTitle(`Emoji Deleted -`)
@@ -232,7 +231,7 @@ channel.sendEmbed(embed)
 });
 
 client.on("messageDelete",  rd => {
-const channel = rd.guild.channels.find("name", "اللوق")
+const channel = rd.guild.channels.find("name", "log")
 if(channel) {
   var embed = new Discord.RichEmbed()
   .setTitle(`Message Deleted -`)
